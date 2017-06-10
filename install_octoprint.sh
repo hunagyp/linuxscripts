@@ -9,11 +9,7 @@ virtualenv venv
 ./venv/bin/python setup.py install
 mkdir $HOME/opt/.op{01..02}
 
-rm $HOME/opt/OctoPrint/scripts/op1 \
-$HOME/opt/OctoPrint/scripts/op2 \
-$HOME/opt/OctoPrint/scripts/op1.init \
-$HOME/opt/OctoPrint/scripts/op2.init
-
+cd $HOME/opt/OctoPrint/scripts/
 cp octoprint.default op1
 cp octoprint.default op2
 cp octoprint.init op1.init
@@ -66,6 +62,3 @@ sudo su -c "usermod -a -G dialout pi"
 # allow pi user to run shutdown and service commands
 sudo su -c "echo \"pi ALL=NOPASSWD: /sbin/shutdown\" > /etc/sudoers.d/octoprint-shutdown"
 sudo su -c "echo \"pi ALL=NOPASSWD: /sbin/service\" > /etc/sudoers.d/octoprint-service"
-
-# Fix SSH
-sudo su -c "echo \"IPQoS 0x00\" >> /etc/ssh/sshd_config"
